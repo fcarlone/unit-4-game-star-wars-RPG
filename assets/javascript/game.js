@@ -65,20 +65,27 @@ $(document).ready(function () {
       for (let i = 0; i < arr.length; i++) {
         if (i !== indexNumber) {
           console.log(i)
-          // Display defender images
-          $("#defender-list").append(
-            `<img src=assets/images/${i + 1}.jpg>`
-          );
-          // Dispaly defender name and health
-          $("#defender-list").append(charactersData.name[i])
-          $("#defender-list").append(charactersData.characterHealth[i])
 
-          console.log('defender list')
-          // let characterNotSelected = ($(this).attr('src'))
-          // let characterNotSelectedName = ($(this).attr('character-name'))
-          // let characterNotSelectedHealth = ($(this).attr('character-health'))
-          // let characternotSelectedId = ($(this).attr('id'))
-          // console.log(characterNotSelected)
+          // Create image tag for each defender
+          let defenderImage = $("<img>")
+          // Give each defender a display-defender-game-image class for styling
+          defenderImage.addClass("display-defender-game-image");
+          // Give each  defender  a src link attribute to character image file
+          defenderImage.attr("src", `assets/images/${i + 1}.jpg`);
+          // Give each  defender  a character unique id attribute
+          defenderImage.attr("id", i);
+          // Give each  defender  a character name attribute
+          defenderImage.attr("character-name", charactersData.name[i]);
+          // Give each  defender  a character health attribute
+          defenderImage.attr("character-health", charactersData.characterHealth[i])
+          // Add  defender  image to website - id = "defender-list-image"
+          $("#defender-list-image").append(defenderImage);
+
+          // Dispaly defender name and health
+          $("#defender-list-image").append(charactersData.name[i])
+          $("#defender-list-image").append(charactersData.characterHealth[i])
+
+
 
         }
 
