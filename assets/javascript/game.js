@@ -107,7 +107,7 @@ $(document).ready(function () {
       let defenderSelectedId = ($(this).attr('id'))
       console.log('defender on-click event', defenderSelected)
       // Push defender selected to defenderSelectedArray array
-      defenderSelectedArray.push(defenderSelectedId);
+      defenderSelectedArray[0] = (defenderSelectedId);
       // Move selected defender to arena
       $("#defender-character").html(
         `<img src=${defenderSelected}>`
@@ -118,38 +118,54 @@ $(document).ready(function () {
       // Remove selected defender from defende-character list
       $("#defender-list-image").append('');
       $(`#defender-list-image img#${defenderSelectedId}`).remove();
+
       // Get selected character and defender health 
       selectedCharacterHealth = charactersData.characterHealth[characterSelectedArray]
       defenderCharacterHealth = charactersData.characterHealth[defenderSelectedArray]
       gameSelectedCharacterHealth = selectedCharacterHealth
       gameSelectedDefenderHealth = defenderCharacterHealth
 
+      // Invoke Attack Function
+      handleAttach(gameSelectedCharacterHealth, gameSelectedDefenderHealth);
     });
-
-
-
   }
-  // Attack button
-  $("#attack-button").on("click", function () {
-    console.log('attack button clicked')
-    console.log('attack characterSelected array: ', characterSelectedArray)
-    console.log('attack defenderSelected array: ', defenderSelectedArray)
+  const handleAttach = (gameSelectedCharacterHealth, gameSelectedDefenderHealth) => {
+    // Attack button
+    $("#attack-button").on("click", function () {
+      // Add conditions 
+      console.log('attack button clicked')
+      console.log('attack characterSelected array: ', characterSelectedArray)
+      console.log('attack defenderSelected array: ', defenderSelectedArray)
 
-    console.log('selectedCharacterHealth ', selectedCharacterHealth)
-    console.log('defenderCharacterHealth ', defenderCharacterHealth)
-    $("#player-character-health").append()
-    // Get selected character and defender damage
-    selectedCharacterDamage = charactersData.characterDamage[characterSelectedArray]
-    defenderCharacterDamage = charactersData.characterDamage[defenderSelectedArray]
-    console.log('selectedCharacterDamage ', selectedCharacterDamage)
-    console.log('defenderCharacterDamage ', defenderCharacterDamage)
+      console.log('selectedCharacterHealth ', selectedCharacterHealth)
+      console.log('defenderCharacterHealth ', defenderCharacterHealth)
+      $("#player-character-health").append()
+      // Get selected character and defender damage
+      selectedCharacterDamage = charactersData.characterDamage[characterSelectedArray]
+      defenderCharacterDamage = charactersData.characterDamage[defenderSelectedArray]
+      console.log('selectedCharacterDamage ', selectedCharacterDamage)
+      console.log('defenderCharacterDamage ', defenderCharacterDamage)
 
-    // attack calculations
-    gameSelectedCharacterHealth -= defenderCharacterDamage;
-    console.log("gameSelectedCharacterHealth", gameSelectedCharacterHealth)
-    gameSelectedDefenderHealth -= selectedCharacterDamage
-    console.log('gameSelectedDefenderHealth', gameSelectedDefenderHealth)
-  });
+      // attack calculations
+      gameSelectedCharacterHealth -= defenderCharacterDamage;
+      console.log("gameSelectedCharacterHealth", gameSelectedCharacterHealth)
+      gameSelectedDefenderHealth -= selectedCharacterDamage
+      console.log('gameSelectedDefenderHealth', gameSelectedDefenderHealth)
+
+      if (gameSelectedCharacterHealth <= 0) {
+        console.log('you lose - invoke play again button')
+        $("#game-attack-message").text("you lost")
+
+      } else if (gameSelectedDefenderHealth <= 0) {
+        console.log('you win')
+        $("#game-attack-message").text("YOU WON.  Select a new opponent")
+        gameSelectedCharacterHealth = 0;
+        gameSelectedDefenderHealth = 0;
+        handleAttach()
+      }
+    });
+  };
+
 
   console.log('___________________________')
   console.log('Global characterSelected array: ', characterSelectedArray)
