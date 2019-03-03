@@ -12,8 +12,8 @@ $(document).ready(function () {
 
   let characterSelectedArray = [];
   let defenderSelectedArray = [];
-  let gameSelectedCharacterHealth;
-  let gameSelectedDefenderHealth;
+  let gameSelectedCharacterHealth = 0;
+  let gameSelectedDefenderHealth = 0;
   // Initial population with all characters (remove selected character during onClick event)
   let charactersNotSelectedArray = charactersData.name;
   console.log(`Global 1 charactersNotSelectd ${charactersNotSelectedArray}`)
@@ -89,6 +89,8 @@ $(document).ready(function () {
           $("#defender-list-image").append(charactersData.characterHealth[i])
 
         }
+        // Set gameSelectedCharacterHealth;
+        gameSelectedCharacterHealth = charactersData.characterHealth[i]
 
       }
       console.log(`charactersNotSelectd ${charactersNotSelectedArray}`)
@@ -119,17 +121,17 @@ $(document).ready(function () {
       $("#defender-list-image").append('');
       $(`#defender-list-image img#${defenderSelectedId}`).remove();
 
-      // Get selected character and defender health 
-      selectedCharacterHealth = charactersData.characterHealth[characterSelectedArray]
+      // Get selected character and defender health **update
+      // selectedCharacterHealth = gameSelectedCharacterHealth
       defenderCharacterHealth = charactersData.characterHealth[defenderSelectedArray]
-      gameSelectedCharacterHealth = selectedCharacterHealth
+      // gameSelectedCharacterHealth = selectedCharacterHealth
       gameSelectedDefenderHealth = defenderCharacterHealth
 
       // Invoke Attack Function
-      handleAttach(gameSelectedCharacterHealth, gameSelectedDefenderHealth);
+      handleAttack();
     });
   }
-  const handleAttach = (gameSelectedCharacterHealth, gameSelectedDefenderHealth) => {
+  const handleAttack = () => {
     // Attack button
     $("#attack-button").on("click", function () {
       // Add conditions 
@@ -137,10 +139,10 @@ $(document).ready(function () {
       console.log('attack characterSelected array: ', characterSelectedArray)
       console.log('attack defenderSelected array: ', defenderSelectedArray)
 
-      console.log('selectedCharacterHealth ', selectedCharacterHealth)
+      console.log('selectedCharacterHealth ', gameSelectedCharacterHealth)
       console.log('defenderCharacterHealth ', defenderCharacterHealth)
       $("#player-character-health").append()
-      // Get selected character and defender damage
+      // Get selected character and defender damage  ***update
       selectedCharacterDamage = charactersData.characterDamage[characterSelectedArray]
       defenderCharacterDamage = charactersData.characterDamage[defenderSelectedArray]
       console.log('selectedCharacterDamage ', selectedCharacterDamage)
@@ -159,9 +161,11 @@ $(document).ready(function () {
       } else if (gameSelectedDefenderHealth <= 0) {
         console.log('you win')
         $("#game-attack-message").text("YOU WON.  Select a new opponent")
-        gameSelectedCharacterHealth = 0;
         gameSelectedDefenderHealth = 0;
-        handleAttach()
+
+        handleAttack()
+      } else {
+
       }
     });
   };
