@@ -39,8 +39,8 @@ $(document).ready(function () {
 
     // on-Click event for each character image
     $(".display-game-image").on("click", function () {
-      console.log('button selected')
-      // Chain the "characterSelected" variable to "character-name" attribute to act as a getter
+      console.log('image selected')
+      // Chain the variables to attributes to act as a getter
       let characterSelected = ($(this).attr('src'))
       let characterSelectedName = ($(this).attr('character-name'))
       let characterSelectedHealth = ($(this).attr('character-health'))
@@ -59,16 +59,27 @@ $(document).ready(function () {
       $("#character-list-image").remove();
 
       // Move other characters to "defender-list" id
-      console.log(characterSelctedArray)
-      let indexNumber = characterSelctedArray;
-      let indexNumberValue = charactersData.name[indexNumber];
-      console.log(indexNumberValue)
-      if (arr.includes(indexNumberValue)) {
-        charactersNotSelectedArray.splice(indexNumber, 1)
+      console.log('Index number of character selected', characterSelctedArray)
+      let indexNumber = parseInt(characterSelctedArray[0])
+      console.log('arr', arr)
+      for (let i = 0; i < arr.length; i++) {
+        if (i !== indexNumber) {
+          console.log(i)
+          // Display defender images
+          $("#defender-list").append(
+            `<img src=assets/images/${i + 1}.jpg>`
+          );
+          // Dispaly defender name and health
+          $("#defender-list").append(charactersData.name[i])
+          $("#defender-list").append(charactersData.characterHealth[i])
 
-        // for-loop through updated charactersNotSelectedArray array
-        for (let i = 0; i < charactersNotSelectedArray.length; i++) {
-          console.log(charactersNotSelectedArray)
+          console.log('defender list')
+          // let characterNotSelected = ($(this).attr('src'))
+          // let characterNotSelectedName = ($(this).attr('character-name'))
+          // let characterNotSelectedHealth = ($(this).attr('character-health'))
+          // let characternotSelectedId = ($(this).attr('id'))
+          // console.log(characterNotSelected)
+
         }
 
       }
