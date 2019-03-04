@@ -60,7 +60,7 @@ $(document).ready(function () {
 
       // display selected character image, name and health in battle arena
       $("#player-character").append(
-        `<p>${characterSelectedName}</p>`,
+        `<h3>${characterSelectedName}</h3>`,
         `<img src=${characterSelected}>`,
         `<p>${characterSelectedHealth}</p>`,
       );
@@ -122,7 +122,7 @@ $(document).ready(function () {
       defenderSelectedArray[0] = (defenderSelectedId);
       // Move selected defender to arena
       $("#defender-character").append(
-        `<p>${defenderSelectedName}</p>`,
+        `<h3>${defenderSelectedName}</h3>`,
         `<img src=${defenderSelected}>`,
         `<p>${defenderSelectedHealth}</p>`
       );
@@ -165,6 +165,10 @@ $(document).ready(function () {
       console.log("gameSelectedCharacterHealth", gameSelectedCharacterHealth)
       gameSelectedDefenderHealth -= selectedCharacterDamage
       console.log('gameSelectedDefenderHealth', gameSelectedDefenderHealth)
+      // Update character health
+      $("#player-character p").text(gameSelectedCharacterHealth)
+      // Update defender health
+      $("#defender-character p").text(gameSelectedDefenderHealth)
 
       if (gameSelectedCharacterHealth <= 0) {
 
