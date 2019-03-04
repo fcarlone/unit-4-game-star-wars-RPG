@@ -36,8 +36,13 @@ $(document).ready(function () {
       // Give each character a character health attribute
       characterImage.attr("character-health", charactersData.characterHealth[i])
       // Add character image to website - id = "character-list-image"
-      // $("#character-list-image").text(charactersData.name[i])
+      // $(".character-container").append($(characterImage).attr("character-name"))
+      $("#character-list-image").append($(characterImage).attr("character-name"));
+      $("#character-list-image").append($(characterImage).attr("character-health"))
       $("#character-list-image").append(characterImage);
+
+
+
 
     }
 
@@ -53,7 +58,7 @@ $(document).ready(function () {
       characterSelectedArray.push(characterSelectedId);
 
 
-      // display selected character image, name and health in arena
+      // display selected character image, name and health in battle arena
       $("#player-character").append(
         `<p>${characterSelectedName}</p>`,
         `<img src=${characterSelected}>`,

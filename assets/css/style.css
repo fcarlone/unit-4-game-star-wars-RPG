@@ -1,6 +1,7 @@
 img {
   height: 250px;
   width: 200px;
+  margin-bottom: 60px;
 }
 
 #player-character {
@@ -18,4 +19,32 @@ img {
 .game-arena-container {
   display: block;
   height: 300px;
+}
+
+.display-game-image {
+  content: attr("character-name");
+  border: blue 20px solid;
+}
+
+img#0.display-game-image {
+  border: red 40px solid;
+}
+
+.character-container {
+  margin: 30px 20px 50px 20px;
+  background: yellow;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  width: 1400px;
+  height: 350px;
+  display: block;
+}
+
+#character-list-image {
+  text-align: left;
+}
+
+img {
+  text-align: left;
 }
