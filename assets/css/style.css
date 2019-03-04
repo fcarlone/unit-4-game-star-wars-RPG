@@ -1,7 +1,7 @@
 img {
   height: 250px;
   width: 200px;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 #player-character {
@@ -31,13 +31,13 @@ img#0.display-game-image {
 }
 
 .character-container {
-  margin: 30px 20px 50px 20px;
+  margin: 30px 20px 20px 20px;
   background: yellow;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
   width: 1400px;
-  height: 350px;
+  height: 325px;
   display: block;
 }
 
@@ -47,4 +47,12 @@ img#0.display-game-image {
 
 img {
   text-align: left;
+}
+
+.defender-container h1 {
+  margin: 15px;
+}
+
+.button-container {
+  margin: 30px;
 }
