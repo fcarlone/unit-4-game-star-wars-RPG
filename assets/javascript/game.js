@@ -40,11 +40,7 @@ $(document).ready(function () {
       $("#character-list-image").append($(characterImage).attr("character-name"));
       $("#character-list-image").append($(characterImage).attr("character-health"))
       $("#character-list-image").append(characterImage);
-
-
-
-
-    }
+    };
 
     // on-Click event to select character
     $(".display-game-image").on("click", function () {
@@ -57,6 +53,9 @@ $(document).ready(function () {
       // Push character selected id to characterSelctedArray 
       characterSelectedArray.push(characterSelectedId);
 
+
+      // Set gameSelectedCharacterHealth;
+      gameSelectedCharacterHealth = characterSelectedHealth
 
       // display selected character image, name and health in battle arena
       $("#player-character").append(
@@ -92,15 +91,16 @@ $(document).ready(function () {
           defenderImage.attr("character-health", charactersData.characterHealth[i])
           // Add  defender  image to website - id = "defender-list-image"
 
-          $("#defender-list-image").append(defenderImage);
 
-          // Dispaly defender name and health
+
+          // Dispaly defender image, name and health
+          $("#defender-list-image").append($(defenderImage).attr("character-name"));
+          $("#defender-list-image").append($(defenderImage).attr("character-health"));
+          $("#defender-list-image").append(defenderImage);
           // $("#defender-list-image").append(charactersData.name[i])
           // $("#defender-list-image").append(charactersData.characterHealth[i])
 
         }
-        // Set gameSelectedCharacterHealth;
-        gameSelectedCharacterHealth = charactersData.characterHealth[i]
 
       }
       console.log(`charactersNotSelectd ${charactersNotSelectedArray}`)

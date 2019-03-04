@@ -14,23 +14,18 @@ img {
   display: block
 }
 
-.character-container,
-.defender-container,
 .game-arena-container {
   display: block;
   height: 300px;
 }
 
-.display-game-image {
-  content: attr("character-name");
+.display-game-image,
+.display-defender-game-image {
   border: blue 20px solid;
 }
 
-img#0.display-game-image {
-  border: red 40px solid;
-}
-
-.character-container {
+.character-container,
+.defender-container {
   margin: 30px 20px 20px 20px;
   background: yellow;
   padding-left: 10px;
@@ -41,16 +36,8 @@ img#0.display-game-image {
   display: block;
 }
 
-#character-list-image {
-  text-align: left;
-}
-
 img {
   text-align: left;
-}
-
-.defender-container h1 {
-  margin: 15px;
 }
 
 .button-container {
