@@ -3,8 +3,8 @@
 $(document).ready(function () {
 
   charactersData = {
-    name: ["steve", "fred", "sue", "ralph"],
-    charactersImageArray: ['assets/images/1.jpg', 'assets/images/2.jpg', 'assets/images/3.jpg', 'assets/images/4.jpg'],
+    name: ["Captain America", "Iron Man", "Spider Man", "Wolverine"],
+    charactersImageArray: ['assets/images/1.jpeg', 'assets/images/2.jpeg', 'assets/images/3.jpeg', 'assets/images/4.jpeg', 'assets/images/5.jpeg', 'assets/images/6.jpeg', 'assets/images/7.jpeg', 'assets/images/8.jpeg'],
     characterHealth: [100, 150, 200, 250],
     characterDamage: [5, 8, 13, 20]
   }
@@ -28,7 +28,7 @@ $(document).ready(function () {
       // Give each character a display-game-image class for styling
       characterImage.addClass("display-game-image");
       // Give each character a src link attribute to character image file
-      characterImage.attr("src", `assets/images/${i + 1}.jpg`);
+      characterImage.attr("src", `assets/images/${i + 1}.jpeg`);
       // Give each character a character unique id attribute
       characterImage.attr("id", i);
       // Give each character a character name attribute
@@ -36,6 +36,7 @@ $(document).ready(function () {
       // Give each character a character health attribute
       characterImage.attr("character-health", charactersData.characterHealth[i])
       // Add character image to website - id = "character-list-image"
+      // $("#character-list-image").text(charactersData.name[i])
       $("#character-list-image").append(characterImage);
 
     }
@@ -51,12 +52,15 @@ $(document).ready(function () {
       // Push character selected id to characterSelctedArray 
       characterSelectedArray.push(characterSelectedId);
 
-      // display selected character image and name in arena
-      $("#player-character").html(
-        `<img src=${characterSelected}>`
+
+      // display selected character image, name and health in arena
+      $("#player-character").append(
+        `<p>${characterSelectedName}</p>`,
+        `<img src=${characterSelected}>`,
+        `<p>${characterSelectedHealth}</p>`,
       );
-      $("#player-character").append(characterSelectedName);
-      $("#player-character").append(characterSelectedHealth);
+
+      // $("#player-character").append(characterSelectedHealth);
       console.log('characterButton')
       // Remove character selected from character list
       $("#character-list-image").remove();
@@ -74,7 +78,7 @@ $(document).ready(function () {
           // Give each defender a display-defender-game-image class for styling
           defenderImage.addClass("display-defender-game-image");
           // Give each  defender  a src link attribute to character image file
-          defenderImage.attr("src", `assets/images/${i + 1}.jpg`);
+          defenderImage.attr("src", `assets/images/${i + 5}.jpeg`);
           // Give each  defender  a character unique id attribute
           defenderImage.attr("id", i);
           // Give each  defender  a character name attribute
@@ -82,11 +86,12 @@ $(document).ready(function () {
           // Give each  defender  a character health attribute
           defenderImage.attr("character-health", charactersData.characterHealth[i])
           // Add  defender  image to website - id = "defender-list-image"
+
           $("#defender-list-image").append(defenderImage);
 
           // Dispaly defender name and health
-          $("#defender-list-image").append(charactersData.name[i])
-          $("#defender-list-image").append(charactersData.characterHealth[i])
+          // $("#defender-list-image").append(charactersData.name[i])
+          // $("#defender-list-image").append(charactersData.characterHealth[i])
 
         }
         // Set gameSelectedCharacterHealth;
@@ -111,12 +116,14 @@ $(document).ready(function () {
       // Push defender selected to defenderSelectedArray array
       defenderSelectedArray[0] = (defenderSelectedId);
       // Move selected defender to arena
-      $("#defender-character").html(
-        `<img src=${defenderSelected}>`
+      $("#defender-character").append(
+        `<p>${defenderSelectedName}</p>`,
+        `<img src=${defenderSelected}>`,
+        `<p>${defenderSelectedHealth}</p>`
       );
       // Add defender name and health
-      $("#defender-character").append(defenderSelectedName);
-      $("#defender-character").append(defenderSelectedHealth);
+      // $("#defender-character").append(defenderSelectedName);
+      // $("#defender-character").append(defenderSelectedHealth);
       // Remove selected defender from defende-character list
       $("#defender-list-image").append('');
       $(`#defender-list-image img#${defenderSelectedId}`).remove();
@@ -155,11 +162,14 @@ $(document).ready(function () {
       console.log('gameSelectedDefenderHealth', gameSelectedDefenderHealth)
 
       if (gameSelectedCharacterHealth <= 0) {
+
         console.log('you lose - invoke play again button')
         $("#game-attack-message").text("you lost")
 
+
       } else if (gameSelectedDefenderHealth <= 0) {
         console.log('you win')
+        $("#defender-character").remove();
         $("#game-attack-message").text("YOU WON.  Select a new opponent")
         gameSelectedDefenderHealth = 0;
 

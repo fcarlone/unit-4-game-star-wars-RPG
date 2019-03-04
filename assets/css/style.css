@@ -1,0 +1,21 @@
+img {
+  height: 250px;
+  width: 200px;
+}
+
+#player-character {
+  float: left;
+  display: block;
+}
+
+#defender-character {
+  float: left;
+  display: block
+}
+
+.character-container,
+.defender-container,
+.game-arena-container {
+  display: block;
+  height: 300px;
+}
