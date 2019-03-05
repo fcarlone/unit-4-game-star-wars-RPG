@@ -23,12 +23,22 @@ body {
 img {
   height: 175px;
   width: 150px;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 #player-character {
   float: left;
   display: block;
+}
+
+#player-character h3,
+#defender-character h3 {
+  text-align: center;
+}
+
+#player-character p,
+#defender-character p {
+  text-align: center;
 }
 
 #defender-character {
@@ -43,7 +53,7 @@ img {
 
 .display-game-image,
 .display-defender-game-image {
-  border: blue 20px solid;
+  border: blue 7px solid;
 }
 
 .character-container,
@@ -67,11 +77,19 @@ img {
 }
 
 .game-arena-container img {
-  margin: 40px
+  margin: 10px
 }
 
 #game-attack-message {
   text-align: center;
   font-size: 1.5rem;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+button {
+  color: white;
+  background-color: grey;
+  font-family: Arial;
+  font-size: 30px;
+  padding: 5px;
 }

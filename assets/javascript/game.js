@@ -95,6 +95,11 @@ $(document).ready(function () {
 
       }
       console.log(`charactersNotSelectd ${charactersNotSelectedArray}`)
+
+      // Remove Avenger list div after selection
+      $(".game-container").remove();
+      $(".character-container").remove();
+
       // Invoke defenderOnClickEvent fuction - user to select defender
       defenderOnClickEvent();
     })
@@ -131,6 +136,8 @@ $(document).ready(function () {
       // gameSelectedCharacterHealth = selectedCharacterHealth
       gameSelectedDefenderHealth = defenderCharacterHealth
 
+      // Message to click the attack button
+      $("#game-attack-message").text("Press the attack button")
       // Invoke Attack Function
       handleAttack();
     });
