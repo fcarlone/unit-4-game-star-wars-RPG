@@ -21,7 +21,7 @@ $(document).ready(function () {
   let victoryCount = 0;
 
   const checkCount = () => {
-    if (victoryCount >= 3) {
+    if (victoryCount > 3) {
       console.log(victoryCount >= 3)
       $("#game-attack-message").text("You did it.  You defeated all the Skrulls.  Great job.");
       $(".replay-game-button-container").show(1000);
@@ -45,8 +45,7 @@ $(document).ready(function () {
       characterImage.attr("character-name", charactersData.name[i]);
       // Give each character a character health attribute
       characterImage.attr("character-health", charactersData.characterHealth[i])
-      // Add character image to website - id = "character-list-image"
-      // $(".character-container").append($(characterImage).attr("character-name"))
+
       $("#character-list-image").append($(characterImage).attr("character-name"));
       $("#character-list-image").append($(characterImage).attr("character-health"))
       $("#character-list-image").append(characterImage);
@@ -184,7 +183,7 @@ $(document).ready(function () {
       // Update defender health
       $("#defender-character p").text(gameSelectedDefenderHealth)
 
-      if (gameSelectedCharacterHealth <= 0) {
+      if (gameSelectedCharacterHealth < 0) {
         console.log('you lose - invoke play again button')
         $("#game-attack-message").text("You lost.  Do you want to play again?")
 
@@ -194,6 +193,7 @@ $(document).ready(function () {
         $(".replay-game-button-container").show(1500);
 
       } else if (gameSelectedDefenderHealth <= 0) {
+        victoryCount = victoryCount + 1;
         console.log('you win')
         // Remove attach button
         $(".attack-button-container").hide(1000);
@@ -203,9 +203,8 @@ $(document).ready(function () {
         $("#defender-character img").remove();
 
         $("#game-attack-message").text("YOU WON.  Select a new opponent")
-        // gameSelectedDefenderHealth = 0;
+        gameSelectedDefenderHealth = 0;
         // Check number of wins
-        victoryCount = victoryCount + 1;
         console.log('victory count', victoryCount)
         checkCount();
       } else {
