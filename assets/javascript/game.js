@@ -5,7 +5,7 @@ $(document).ready(function () {
   charactersData = {
     name: ["Captain America", "Iron Man", "Spider Man", "Wolverine"],
     charactersImageArray: ['assets/images/1.jpeg', 'assets/images/2.jpeg', 'assets/images/3.jpeg', 'assets/images/4.jpeg', 'assets/images/5.jpeg', 'assets/images/6.jpeg', 'assets/images/7.jpeg', 'assets/images/8.jpeg'],
-    characterHealth: [100, 150, 200, 250],
+    characterHealth: [115, 150, 205, 225],
     characterDamage: [5, 8, 13, 20]
   };
   // Initial website setup
@@ -47,7 +47,7 @@ $(document).ready(function () {
       characterImage.attr("character-health", charactersData.characterHealth[i])
 
       $("#character-list-image").append($(characterImage).attr("character-name"));
-      $("#character-list-image").append($(characterImage).attr("character-health"))
+      $("#character-list-image").append($(characterImage).attr("character-health"));
       $("#character-list-image").append(characterImage);
     };
 
@@ -131,7 +131,7 @@ $(document).ready(function () {
       defenderSelectedArray[0] = (defenderSelectedId);
       // Move selected defender to arena
       $("#defender-character").append(
-        `<h3>${defenderSelectedName}</h3>`,
+        `<h3>Skrull ${defenderSelectedName}</h3>`,
         `<img src=${defenderSelected}>`,
         `<p>${defenderSelectedHealth}</p>`
       );
@@ -186,7 +186,12 @@ $(document).ready(function () {
       if (gameSelectedCharacterHealth < 0) {
         console.log('you lose - invoke play again button')
         $("#game-attack-message").text("You lost.  Do you want to play again?")
+        // Remove losing player
+        $("#player-character p").remove();
+        $("#player-character h3").remove();
+        $("#player-character img").remove();
 
+        $("#defender-character p").remove();
         // Remove attach button
         $(".attack-button-container").hide(1000);
         // Play again button and message

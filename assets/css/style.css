@@ -15,26 +15,27 @@ body {
   text-align: center;
   margin-left: 20px;
   margin-right: 20px;
-  color: rgb(80, 79, 79);
-}
-
-.character-list-image {
-  /* background: rgba(255, 255, 255, .55); */
+  color: rgb(56, 53, 53);
 }
 
 .game-container p {
   background: rgba(255, 255, 255, .55);
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
   width: 300px;
   margin: auto;
-  padding: 20px;
+  padding: 10px 20px;
   border: grey 2px solid;
 }
 
 #battle-arena p {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
+}
+
+#battle-arena h4 {
+  text-align: center;
+  font-size: 2.5rem;
 }
 
 img {
@@ -57,7 +58,7 @@ img:hover {
 #player-character h3,
 #defender-character h3 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 #player-character p,
@@ -67,13 +68,16 @@ img:hover {
 
 #defender-character {
   float: left;
-  display: block
+  display: block;
+  margin-left: 30px;
 }
 
 .game-arena-container {
+  background: rgba(255, 255, 255, .55);
   display: block;
-  height: 350px;
+  height: 375px;
   margin-left: 20px;
+  margin-right: 20px;
 }
 
 #battle-arena p .display-game-image,
@@ -84,8 +88,6 @@ img:hover {
 .character-container,
 .defender-container {
   margin: 5px 20px 20px 20px;
-  /* background: rgba(255, 255, 255, .55); */
-  /* background: yellow; */
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
@@ -94,16 +96,12 @@ img:hover {
   display: block;
 }
 
-.game-arena-container {
-  background: rgba(255, 255, 255, .55);
-}
-
 .attack-button-container {
-  margin: 5px 30px 2px 60px;
+  margin: 5px 30px 2px 75px;
 }
 
 .replay-game-button-container {
-  margin: 5px 30px 2px 50px;
+  margin: 5px 30px 2px 25px;
 }
 
 button {
@@ -128,13 +126,5 @@ button {
   font-size: 1.5rem;
   margin: auto;
   padding: 10px;
-  /* border: grey 2px solid; */
   width: 600px;
 }
-
-/* #character-list-image {
-  background: red;
-  text-align: center;
-}
-
-*/
