@@ -15,7 +15,17 @@ body {
   text-align: center;
   margin-left: 20px;
   margin-right: 20px;
+  border-left: grey 2px solid;
+  border-right: grey 2px solid;
   color: rgb(56, 53, 53);
+}
+
+.header .intro-two {
+  border-bottom: grey 2px solid;
+}
+
+.header .intro-one {
+  border-top: grey 2px solid;
 }
 
 .game-container p {
