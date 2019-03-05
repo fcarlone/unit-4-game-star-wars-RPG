@@ -7,8 +7,8 @@ $(document).ready(function () {
     charactersImageArray: ['assets/images/1.jpeg', 'assets/images/2.jpeg', 'assets/images/3.jpeg', 'assets/images/4.jpeg', 'assets/images/5.jpeg', 'assets/images/6.jpeg', 'assets/images/7.jpeg', 'assets/images/8.jpeg'],
     characterHealth: [100, 150, 200, 250],
     characterDamage: [5, 8, 13, 20]
-  }
-
+  };
+  // Initial website setup
   let characterSelectedArray = [];
   let defenderSelectedArray = [];
   let gameSelectedCharacterHealth = 0;
@@ -16,6 +16,17 @@ $(document).ready(function () {
   // Initial population with all characters (remove selected character during onClick event)
   let charactersNotSelectedArray = charactersData.name;
   console.log(`Global 1 charactersNotSelectd ${charactersNotSelectedArray}`)
+  $(".attack-button-container").hide();
+  $(".replay-game-button-container").hide();
+  let victoryCount = 0;
+
+  const checkCount = () => {
+    if (victoryCount >= 3) {
+      console.log(victoryCount >= 3)
+      $("#game-attack-message").text("You did it.  You defeated all the Skrulls.  Great job.");
+      $(".replay-game-button-container").show(1000);
+    }
+  }
 
   // Display all the characters for user to select
   const createImageTags = (arr) => {
@@ -60,11 +71,13 @@ $(document).ready(function () {
         `<img src=${characterSelected}>`,
         `<p>${characterSelectedHealth}</p>`,
       );
-
-      // $("#player-character").append(characterSelectedHealth);
-      console.log('characterButton')
       // Remove character selected from character list
       $("#character-list-image").remove();
+      // Instruction for user to select a Skrull
+      $("#game-attack-message").append("Select a Skrull")
+      // $("#player-character").append(characterSelectedHealth);
+      console.log('characterButton')
+
 
       // Move other characters to "defender-list" id
       console.log('Index number of character selected', characterSelectedArray)
@@ -143,6 +156,8 @@ $(document).ready(function () {
     });
   }
   const handleAttack = () => {
+    // Show attack button
+    $(".attack-button-container").show(1000);
     // Attack button
     $("#attack-button").on("click", function () {
       // Add conditions 
@@ -171,29 +186,39 @@ $(document).ready(function () {
 
       if (gameSelectedCharacterHealth <= 0) {
         console.log('you lose - invoke play again button')
-        $("#game-attack-message").text("you lost")
+        $("#game-attack-message").text("You lost.  Do you want to play again?")
+
+        // Remove attach button
+        $(".attack-button-container").hide(1000);
+        // Play again button and message
+        $(".replay-game-button-container").show(1500);
 
       } else if (gameSelectedDefenderHealth <= 0) {
         console.log('you win')
-        // defenderSelectedArray = [];
+        // Remove attach button
+        $(".attack-button-container").hide(1000);
 
         $("#defender-character p").remove();
         $("#defender-character h3").remove();
         $("#defender-character img").remove();
 
         $("#game-attack-message").text("YOU WON.  Select a new opponent")
-        gameSelectedDefenderHealth = 0;
-
-        // Select a new opponent
-        // defenderOnClickEvent();
-
+        // gameSelectedDefenderHealth = 0;
+        // Check number of wins
+        victoryCount = victoryCount + 1;
+        console.log('victory count', victoryCount)
+        checkCount();
       } else {
 
       }
     });
   };
 
-
+  // Replay game 
+  $("#replay-button").on("click", function () {
+    console.log('replay button')
+    location.reload();
+  })
   console.log('___________________________')
   console.log('Global characterSelected array: ', characterSelectedArray)
   console.log('Global defenderSelected array: ', defenderSelectedArray)
