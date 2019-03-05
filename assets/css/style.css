@@ -66,6 +66,7 @@ img:hover {
 .game-arena-container {
   display: block;
   height: 350px;
+  margin-left: 20px;
 }
 
 #battle-arena p .display-game-image,
@@ -90,7 +91,8 @@ img:hover {
   background: rgba(255, 255, 255, .55);
 }
 
-.attack-button-container {
+.attack-button-container,
+.replay-game-button-container {
   margin: 5px 30px 5px 30px;
 }
 
