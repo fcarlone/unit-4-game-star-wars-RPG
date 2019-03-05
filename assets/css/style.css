@@ -51,8 +51,10 @@ body {
 img {
   height: 175px;
   width: 150px;
-  margin-bottom: 20px;
-  border: 7px black solid;
+  display: inline-flex;
+  /*margin-top: 40px;
+border: 7px black solid;
+float: left; */
 }
 
 img:hover {
@@ -68,12 +70,19 @@ img:hover {
 #player-character h3,
 #defender-character h3 {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.15rem;
 }
 
 #player-character p,
 #defender-character p {
   text-align: center;
+  font-size: 1.25rem;
+  width: 170px;
+}
+
+#player-character img,
+#defender-character img {
+  margin-top: 10px;
 }
 
 #defender-character {
@@ -85,7 +94,7 @@ img:hover {
 .game-arena-container {
   background: rgba(255, 255, 255, .55);
   display: block;
-  height: 375px;
+  height: 350px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -107,7 +116,7 @@ img:hover {
 }
 
 .attack-button-container {
-  margin: 5px 30px 2px 75px;
+  margin: 5px 30px 2px 60px;
 }
 
 .replay-game-button-container {
@@ -127,9 +136,9 @@ button {
   padding-left: 100px;
 }
 
-.game-arena-container img {
+/* .game-arena-container img {
   margin: 10px
-}
+} */
 
 #game-attack-message {
   text-align: center;
@@ -137,4 +146,38 @@ button {
   margin: auto;
   padding: 10px;
   width: 600px;
+}
+
+#character-list-image {
+  /* position: relative; */
+  display: flex;
+}
+
+#character-list-image h3 {
+  display: flex;
+  height: 15px;
+  /* position: absolute; */
+  background: red;
+}
+
+.display-defender-game-image {
+  margin-left: 50px;
+}
+
+.display-defender-game-image {
+  margin-top: 10px;
+}
+
+.game-defender-container {
+  background: rgba(255, 255, 255, .55);
+  text-align: center;
+  font-size: 1.5rem;
+  width: 200px;
+  margin-left: 50px;
+  padding: 10px 5px;
+  border: grey 2px solid;
+}
+
+.character-list-data {
+  display: table-cell;
 }

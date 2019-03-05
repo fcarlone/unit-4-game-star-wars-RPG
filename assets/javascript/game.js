@@ -18,6 +18,7 @@ $(document).ready(function () {
   console.log(`Global 1 charactersNotSelectd ${charactersNotSelectedArray}`)
   $(".attack-button-container").hide();
   $(".replay-game-button-container").hide();
+  $(".game-defender-container").hide();
 
   let victoryCount = 0;
 
@@ -27,6 +28,7 @@ $(document).ready(function () {
       $("#game-attack-message").text("You did it.  You defeated all the Skrulls.  Great job.");
       $("#player-character p").remove();
       $(".replay-game-button-container").show(1000);
+      $(".game-defender-container").hide(1000);
     }
   }
 
@@ -48,9 +50,18 @@ $(document).ready(function () {
       // Give each character a character health attribute
       characterImage.attr("character-health", charactersData.characterHealth[i])
 
-      $("#character-list-image").append($(characterImage).attr("character-name"));
-      $("#character-list-image").append($(characterImage).attr("character-health"));
-      $("#character-list-image").append(characterImage);
+      // **update here
+
+      $("#character-list-image").append(
+        `<h3>${charactersData.name[i]}</h3>`,
+        $("#character-list-image").append(characterImage),
+        `<h3>${charactersData.characterHealth[i]}</h3>`,
+
+      );
+
+      // $("#character-list-image").append($(characterImage).attr("character-name"));
+      // $("#character-list-image").append($(characterImage).attr("character-health"));
+      // $("#character-list-image").append(characterImage);
     };
 
     // on-Click event to select character
@@ -102,8 +113,9 @@ $(document).ready(function () {
           defenderImage.attr("character-health", charactersData.characterHealth[i]);
 
           // Dispaly defender image, name and health
-          $("#defender-list-image").append($(defenderImage).attr("character-name"));
-          $("#defender-list-image").append($(defenderImage).attr("character-health"));
+          // $("#defender-list-image").append($(defenderImage).attr("character-name"));
+          // $("#defender-list-image").append($(defenderImage).attr("character-health");
+
           $("#defender-list-image").append(defenderImage);
         }
 
@@ -116,6 +128,8 @@ $(document).ready(function () {
 
       // Invoke defenderOnClickEvent fuction - user to select defender
       defenderOnClickEvent();
+      $(".game-defender-container").show();
+      $(".game-defender-container").append("Skrull List:")
     })
 
   };
@@ -185,7 +199,7 @@ $(document).ready(function () {
       // Update defender health
       $("#defender-character p").text(gameSelectedDefenderHealth)
 
-      if (gameSelectedCharacterHealth < 0) {
+      if (gameSelectedCharacterHealth <= 0) {
         console.log('you lose - invoke play again button')
         $("#game-attack-message").text("You lost.  Do you want to play again?")
         // Remove losing player
@@ -199,17 +213,22 @@ $(document).ready(function () {
         // Play again button and message
         $(".replay-game-button-container").show(1500);
 
+        $(".game-defender-container").hide(1000);
+        $(".defender-container").remove();
+
       } else if (gameSelectedDefenderHealth <= 0) {
         victoryCount = victoryCount + 1;
         console.log('you win')
         // Remove attach button
         $(".attack-button-container").hide(1000);
 
+        // $(".game-defender-container").remove();
         $("#defender-character p").remove();
         $("#defender-character h3").remove();
         $("#defender-character img").remove();
 
         $("#game-attack-message").text("YOU WON.  Select a new opponent")
+
         gameSelectedDefenderHealth = 0;
         // Check number of wins
         console.log('victory count', victoryCount)
