@@ -5,7 +5,7 @@ $(document).ready(function () {
   charactersData = {
     name: ["Captain America", "Iron Man", "Spider Man", "Wolverine"],
     charactersImageArray: ['assets/images/1.jpeg', 'assets/images/2.jpeg', 'assets/images/3.jpeg', 'assets/images/4.jpeg', 'assets/images/5.jpeg', 'assets/images/6.jpeg', 'assets/images/7.jpeg', 'assets/images/8.jpeg'],
-    characterHealth: [115, 155, 205, 225],
+    characterHealth: [115, 155, 205, 250],
     characterDamage: [5, 8, 13, 20]
   };
   // Initial website setup
@@ -18,12 +18,14 @@ $(document).ready(function () {
   console.log(`Global 1 charactersNotSelectd ${charactersNotSelectedArray}`)
   $(".attack-button-container").hide();
   $(".replay-game-button-container").hide();
+
   let victoryCount = 0;
 
   const checkCount = () => {
     if (victoryCount > 3) {
       console.log(victoryCount >= 3)
       $("#game-attack-message").text("You did it.  You defeated all the Skrulls.  Great job.");
+      $("#player-character p").remove();
       $(".replay-game-button-container").show(1000);
     }
   }
