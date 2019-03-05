@@ -5,7 +5,7 @@ $(document).ready(function () {
   charactersData = {
     name: ["Captain America", "Iron Man", "Spider Man", "Wolverine"],
     charactersImageArray: ['assets/images/1.jpeg', 'assets/images/2.jpeg', 'assets/images/3.jpeg', 'assets/images/4.jpeg', 'assets/images/5.jpeg', 'assets/images/6.jpeg', 'assets/images/7.jpeg', 'assets/images/8.jpeg'],
-    characterHealth: [115, 150, 205, 225],
+    characterHealth: [115, 155, 205, 225],
     characterDamage: [5, 8, 13, 20]
   };
   // Initial website setup
