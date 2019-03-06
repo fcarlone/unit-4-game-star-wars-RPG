@@ -34,7 +34,6 @@ $(document).ready(function () {
 
   // Display all the characters for user to select
   const createImageTags = (arr) => {
-    console.log(`createImageTag invloked`)
 
     for (let i = 0; i < arr.length; i++) {
       // Create image tag for each character 
@@ -50,7 +49,7 @@ $(document).ready(function () {
       // Give each character a character health attribute
       characterImage.attr("character-health", charactersData.characterHealth[i])
 
-      // // **update here
+      // Create div for character data to apppend
       let characterListDiv = $('<div class="character-list-data">');
 
       // Add character's name, health and image;
@@ -58,19 +57,8 @@ $(document).ready(function () {
         `<h3>${charactersData.name[i]}</h3>`,
         characterImage,
         `<h3>${charactersData.characterHealth[i]}</h3>`
-
       );
-
       $("#character-list-image").append(characterListDiv)
-      // characterListDiv.append(
-      //   `<h3>${charactersData.name[i]}</h3>`,
-      //   $("#character-list-image").append(characterImage),
-      //   `<h3>${charactersData.characterHealth[i]}</h3>`
-      // );
-
-      // $("#character-list-image").append($(characterImage).attr("character-name"));
-      // $("#character-list-image").append($(characterImage).attr("character-health"));
-      // $("#character-list-image").append(characterImage);
     };
 
     // on-Click event to select character
@@ -96,18 +84,12 @@ $(document).ready(function () {
       $("#character-list-image").remove();
       // Instruction for user to select a Skrull
       $("#game-attack-message").append("Select a Skrull")
-      // $("#player-character").append(characterSelectedHealth);
-      console.log('characterButton')
-
-
       // Move other characters to "defender-list" id
       console.log('Index number of character selected', characterSelectedArray)
       let indexNumber = parseInt(characterSelectedArray[0])
       console.log('arr', arr)
       for (let i = 0; i < arr.length; i++) {
         if (i !== indexNumber) {
-          console.log(i)
-
           // Create image tag for each defender
           let defenderImage = $("<img>")
           // Give each defender a display-defender-game-image class for styling
@@ -121,16 +103,18 @@ $(document).ready(function () {
           // Give each  defender  a character health attribute
           defenderImage.attr("character-health", charactersData.characterHealth[i]);
 
-          // Dispaly defender image, name and health
-          // $("#defender-list-image").append($(defenderImage).attr("character-name"));
-          // $("#defender-list-image").append($(defenderImage).attr("character-health");
+          // Create defender div to append data
+          let defenderListDiv = $('<div class="defender-list-data">');
+          defenderListDiv.attr("id", i);
 
-          $("#defender-list-image").append(defenderImage);
+          defenderListDiv.append(
+            `<h3>Skrull ${charactersData.name[i]}</h3>`,
+            defenderImage,
+            `<h3>${charactersData.characterHealth[i]}</h3>`
+          );
+          $("#defender-list-image").append(defenderListDiv)
         }
-
       }
-      console.log(`charactersNotSelectd ${charactersNotSelectedArray}`)
-
       // Remove Avenger list div after selection
       $(".game-container").remove();
       $(".character-container").remove();
@@ -139,7 +123,7 @@ $(document).ready(function () {
       defenderOnClickEvent();
       $(".game-defender-container").show();
       $(".game-defender-container").append("Skrull List:")
-    })
+    });
 
   };
   // on-click event for user to select defender
@@ -149,28 +133,23 @@ $(document).ready(function () {
       let defenderSelectedName = ($(this).attr('character-name'))
       let defenderSelectedHealth = ($(this).attr('character-health'))
       let defenderSelectedId = ($(this).attr('id'))
-      console.log('defender on-click event', defenderSelected)
-      console.log('info ==> ', defenderSelected, defenderSelectedName, defenderSelectedHealth, defenderSelectedId)
+
       // Push defender selected to defenderSelectedArray array
-      console.log('defenderSelectedArray -> ', defenderSelectedArray)
       defenderSelectedArray[0] = (defenderSelectedId);
       // Move selected defender to arena
       $("#defender-character").append(
         `<h3>Skrull ${defenderSelectedName}</h3>`,
         `<img src=${defenderSelected}>`,
-        `<p>${defenderSelectedHealth}</p>`
+        `<h3>${defenderSelectedHealth}</h3>`
       );
-      // Add defender name and health
-      // $("#defender-list-image").append('');
 
       // Remove selected defender from Skrull list
-      $(".defender-character-name").remove();
+      $(`.defender-list-data id#${defenderSelectedId}`).remove();
+      // ****
       $(`#defender-list-image img#${defenderSelectedId}`).remove();
 
-      // Get selected character and defender health **update
-      // selectedCharacterHealth = gameSelectedCharacterHealth
+      // Get selected character and defender health 
       defenderCharacterHealth = charactersData.characterHealth[defenderSelectedArray]
-      // gameSelectedCharacterHealth = selectedCharacterHealth
       gameSelectedDefenderHealth = defenderCharacterHealth
 
       // Message to click the attack button
@@ -185,24 +164,15 @@ $(document).ready(function () {
     // Attack button
     $("#attack-button").on("click", function () {
       // Add conditions 
-      console.log('attack button clicked')
-      console.log('attack characterSelected array: ', characterSelectedArray)
-      console.log('attack defenderSelected array: ', defenderSelectedArray)
-
-      console.log('selectedCharacterHealth ', gameSelectedCharacterHealth)
-      console.log('defenderCharacterHealth ', defenderCharacterHealth)
       $("#player-character-health").append()
-      // Get selected character and defender damage  ***update
+      // Get selected character and defender damage 
       selectedCharacterDamage = charactersData.characterDamage[characterSelectedArray]
       defenderCharacterDamage = charactersData.characterDamage[defenderSelectedArray]
-      console.log('selectedCharacterDamage ', selectedCharacterDamage)
-      console.log('defenderCharacterDamage ', defenderCharacterDamage)
 
       // attack calculations
       gameSelectedCharacterHealth -= defenderCharacterDamage;
-      console.log("gameSelectedCharacterHealth", gameSelectedCharacterHealth)
       gameSelectedDefenderHealth -= selectedCharacterDamage
-      console.log('gameSelectedDefenderHealth', gameSelectedDefenderHealth)
+
       // Update character health
       $("#player-character p").text(gameSelectedCharacterHealth)
       // Update defender health
@@ -231,7 +201,6 @@ $(document).ready(function () {
         // Remove attach button
         $(".attack-button-container").hide(1000);
 
-        // $(".game-defender-container").remove();
         $("#defender-character p").remove();
         $("#defender-character h3").remove();
         $("#defender-character img").remove();
@@ -250,12 +219,10 @@ $(document).ready(function () {
 
   // Replay game 
   $("#replay-button").on("click", function () {
-    console.log('replay button')
     location.reload();
   })
-  console.log('___________________________')
-  console.log('Global characterSelected array: ', characterSelectedArray)
-  console.log('Global defenderSelected array: ', defenderSelectedArray)
+
+  // Create character image tags
   createImageTags(charactersData.name);
-  console.log(`Global charactersNotSelectd ${charactersNotSelectedArray}`)
+
 })

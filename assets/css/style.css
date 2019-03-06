@@ -160,6 +160,16 @@ button {
   /* background: red; */
 }
 
+#defender-list-image h3 {
+  height: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  background: red;
+  text-align: center;
+  margin-left: 50px;
+}
+
 .display-defender-game-image {
   margin-left: 50px;
 }
@@ -178,7 +188,8 @@ button {
   border: grey 2px solid;
 }
 
-.character-list-data {
+.character-list-data,
+.defender-list-data {
   display: table-cell;
 }
 
