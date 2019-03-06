@@ -5,7 +5,7 @@ $(document).ready(function () {
   charactersData = {
     name: ["Captain America", "Iron Man", "Spider Man", "Wolverine"],
     charactersImageArray: ['assets/images/1.jpeg', 'assets/images/2.jpeg', 'assets/images/3.jpeg', 'assets/images/4.jpeg', 'assets/images/5.jpeg', 'assets/images/6.jpeg', 'assets/images/7.jpeg', 'assets/images/8.jpeg'],
-    characterHealth: [115, 155, 205, 250],
+    characterHealth: [115, 155, 175, 250],
     characterDamage: [5, 8, 13, 20]
   };
   // Initial website setup
@@ -15,7 +15,7 @@ $(document).ready(function () {
   let gameSelectedDefenderHealth = 0;
   // Initial population with all characters (remove selected character during onClick event)
   let charactersNotSelectedArray = charactersData.name;
-  console.log(`Global 1 charactersNotSelectd ${charactersNotSelectedArray}`)
+
   $(".attack-button-container").hide();
   $(".replay-game-button-container").hide();
   $(".game-defender-container").hide();
@@ -24,11 +24,11 @@ $(document).ready(function () {
 
   const checkCount = () => {
     if (victoryCount > 3) {
-      console.log(victoryCount >= 3)
+      //  console.log(victoryCount >= 3)
       $("#game-attack-message").text("You did it.  You defeated all the Skrulls.  Great job.");
       $("#player-character p").remove();
       $(".replay-game-button-container").show(1000);
-      $(".game-defender-container").hide(1000);
+      // $("#game-defender-container").remove();
     }
   }
 
@@ -63,7 +63,7 @@ $(document).ready(function () {
 
     // on-Click event to select character
     $(".display-game-image").on("click", function () {
-      console.log('character selected')
+
       // Chain the variables to attributes to act as a getter
       let characterSelected = ($(this).attr('src'))
       let characterSelectedName = ($(this).attr('character-name'))
@@ -85,9 +85,8 @@ $(document).ready(function () {
       // Instruction for user to select a Skrull
       $("#game-attack-message").append("Select a Skrull")
       // Move other characters to "defender-list" id
-      console.log('Index number of character selected', characterSelectedArray)
       let indexNumber = parseInt(characterSelectedArray[0])
-      console.log('arr', arr)
+
       for (let i = 0; i < arr.length; i++) {
         if (i !== indexNumber) {
           // Create image tag for each defender
@@ -108,9 +107,9 @@ $(document).ready(function () {
           defenderListDiv.attr("id", i);
 
           defenderListDiv.append(
-            `<h3>Skrull ${charactersData.name[i]}</h3>`,
+            // `<h3>Skrull ${charactersData.name[i]}</h3>`,
             defenderImage,
-            `<h3>${charactersData.characterHealth[i]}</h3>`
+            // `<h3>${charactersData.characterHealth[i]}</h3>`
           );
           $("#defender-list-image").append(defenderListDiv)
         }
@@ -140,7 +139,7 @@ $(document).ready(function () {
       $("#defender-character").append(
         `<h3>Skrull ${defenderSelectedName}</h3>`,
         `<img src=${defenderSelected}>`,
-        `<h3>${defenderSelectedHealth}</h3>`
+        `<p>${defenderSelectedHealth}</p>`
       );
 
       // Remove selected defender from Skrull list
@@ -197,7 +196,6 @@ $(document).ready(function () {
 
       } else if (gameSelectedDefenderHealth <= 0) {
         victoryCount = victoryCount + 1;
-        console.log('you win')
         // Remove attach button
         $(".attack-button-container").hide(1000);
 
@@ -209,7 +207,6 @@ $(document).ready(function () {
 
         gameSelectedDefenderHealth = 0;
         // Check number of wins
-        console.log('victory count', victoryCount)
         checkCount();
       } else {
 

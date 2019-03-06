@@ -183,7 +183,7 @@ button {
   text-align: center;
   font-size: 1.5rem;
   width: 200px;
-  margin-left: 50px;
+  margin-left: 225px;
   padding: 10px 5px;
   border: grey 2px solid;
 }
@@ -193,10 +193,14 @@ button {
   display: table-cell;
 }
 
-/* #character-list {
-  margin-left: 40px;
-} */
+#character-list {
+  margin-left: 250px;
+}
 
 .character-list-data {
   margin-left: 40px;
+}
+
+.defender-container {
+  margin-left: 350px;
 }
