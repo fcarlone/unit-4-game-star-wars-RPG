@@ -52,9 +52,7 @@ img {
   height: 175px;
   width: 150px;
   display: inline-flex;
-  /*margin-top: 40px;
-border: 7px black solid;
-float: left; */
+  border: 7px black solid
 }
 
 img:hover {
@@ -154,10 +152,12 @@ button {
 }
 
 #character-list-image h3 {
-  display: flex;
   height: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
   /* position: absolute; */
-  background: red;
+  /* background: red; */
 }
 
 .display-defender-game-image {
@@ -180,4 +180,12 @@ button {
 
 .character-list-data {
   display: table-cell;
+}
+
+/* #character-list {
+  margin-left: 40px;
+} */
+
+.character-list-data {
+  margin-left: 40px;
 }

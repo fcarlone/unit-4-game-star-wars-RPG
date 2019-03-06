@@ -50,14 +50,23 @@ $(document).ready(function () {
       // Give each character a character health attribute
       characterImage.attr("character-health", charactersData.characterHealth[i])
 
-      // **update here
+      // // **update here
+      let characterListDiv = $('<div class="character-list-data">');
 
-      $("#character-list-image").append(
+      // Add character's name, health and image;
+      characterListDiv.append(
         `<h3>${charactersData.name[i]}</h3>`,
-        $("#character-list-image").append(characterImage),
-        `<h3>${charactersData.characterHealth[i]}</h3>`,
+        characterImage,
+        `<h3>${charactersData.characterHealth[i]}</h3>`
 
       );
+
+      $("#character-list-image").append(characterListDiv)
+      // characterListDiv.append(
+      //   `<h3>${charactersData.name[i]}</h3>`,
+      //   $("#character-list-image").append(characterImage),
+      //   `<h3>${charactersData.characterHealth[i]}</h3>`
+      // );
 
       // $("#character-list-image").append($(characterImage).attr("character-name"));
       // $("#character-list-image").append($(characterImage).attr("character-health"));
